@@ -1,5 +1,7 @@
 <?php namespace WinkForm;
 
+use WinkForm\Support\InputCreator;
+
 /**
  * abstract class Form
  *
@@ -8,325 +10,9 @@
  */
 abstract class Form
 {
+    // enctype constants
     const ENCTYPE_DEFAULT = 'application/x-www-form-urlencoded';
     const ENCTYPE_FILE    = 'multipart/form-data';
-
-
-    /**
-     * create AddressInput object
-     * @param string $name
-     * @param string $value
-     * @return \WinkForm\Input\AddressInput
-     */
-    public static function address($name, $value = null)
-    {
-        return new Input\AddressInput($name, $value);
-    }
-
-    /**
-     * create Button object
-     * @param string $name
-     * @param string $value
-     * @return \WinkForm\Button\InputButton
-     */
-    public static function inputButton($name, $value = null)
-    {
-        return new Button\InputButton($name, $value);
-    }
-
-    /**
-     * create ChainedDropdowns object
-     * @param string $name
-     * @param string $value
-     * @return \WinkForm\Input\ChainedDropdowns
-     */
-    public static function chainedDropdowns($name, $value = null)
-    {
-        return new Input\ChainedDropdowns($name, $value);
-    }
-
-    /**
-     * create Checkbox object
-     * @param string $name
-     * @param string $value
-     * @return \WinkForm\Input\Checkbox
-     */
-    public static function checkbox($name, $value = null)
-    {
-        return new Input\Checkbox($name, $value);
-    }
-
-    /**
-     * create ColorInput object
-     * @param string $name
-     * @param string $value
-     * @return Input\ColorInput
-     */
-    public static function color($name, $value = null)
-    {
-        return new Input\ColorInput($name, $value);
-    }
-
-    /**
-     * create DateInput object
-     * @param string $name
-     * @param string $value
-     * @return \WinkForm\Input\DateInput
-     */
-    public static function date($name, $value = null)
-    {
-        return new Input\DateInput($name, $value);
-    }
-
-    /**
-     * create DateRange object
-     * @param string $name
-     * @param dd-mm-yyyy $from
-     * @param dd-mm-yyyy $to
-     * @return \WinkForm\Input\DateRangeInput
-     */
-    public static function dateRange($name, $from, $to)
-    {
-        return new Input\DateRangeInput($name, $from, $to);
-    }
-
-    /**
-     * create Dropdown object
-     * @param string $name
-     * @param string $value
-     * @return \WinkForm\Input\Dropdown
-     */
-    public static function dropdown($name, $value = null)
-    {
-        return new Input\Dropdown($name, $value);
-    }
-
-    /**
-     * create Email object
-     * @param string $name
-     * @param string $value
-     * @return \WinkForm\Input\EmailInput
-     */
-    public static function email($name, $value = null)
-    {
-        return new Input\EmailInput($name, $value);
-    }
-
-    /**
-     * create FileInput object
-     * @param string $name
-     * @param string $value
-     * @return \WinkForm\Input\FileInput
-     */
-    public static function file($name, $value = null)
-    {
-        return new Input\FileInput($name, $value);
-    }
-
-    /**
-     * create HiddenInput object
-     * @param string $name
-     * @param string $value
-     * @return \WinkForm\Input\HiddenInput
-     */
-    public static function hidden($name, $value = null)
-    {
-        return new Input\HiddenInput($name, $value);
-    }
-
-    /**
-     * create ImageButton object
-     * @param string $name
-     * @param string $value
-     * @return \WinkForm\Button\ImageButton
-     */
-    public static function image($name, $value = null)
-    {
-        return new Button\ImageButton($name, $value);
-    }
-
-    /**
-     * create MonthInput object
-     * @param string $name
-     * @param yyyy-mm $month
-     * @return \WinkForm\Input\MonthInput
-     */
-    public static function month($name, $month = null)
-    {
-        return new Input\MonthInput($name, $month);
-    }
-
-    /**
-     * create MonthRange object
-     * @param string $name
-     * @param yyyy-mm $from
-     * @param yyyy-mm $to
-     * @return \WinkForm\Input\MonthRangeInput
-     */
-    public static function monthRange($name, $from = null, $to = null)
-    {
-        return new Input\MonthRangeInput($name, $from, $to);
-    }
-
-    /**
-     * create NumberInput object
-     * @param string $name
-     * @param string $value
-     * @return \WinkForm\Input\NumberInput
-     */
-    public static function number($name, $value = null)
-    {
-        return new Input\NumberInput($name, $value);
-    }
-
-    /**
-     * create PasswordInput object
-     * @param string $name
-     * @param string $value
-     * @return \WinkForm\Input\PasswordInput
-     */
-    public static function password($name, $value = null)
-    {
-        return new Input\PasswordInput($name, $value);
-    }
-
-    /**
-     * create RadioInput object
-     * @param string $name
-     * @param string $value
-     * @return \WinkForm\Input\RadioInput
-     */
-    public static function radio($name, $value = null)
-    {
-        return new Input\RadioInput($name, $value);
-    }
-    
-    /**
-     * create a <button> element
-     * @param string $name
-     * @param string $value
-     * @return \WinkForm\Button\Button
-     */
-    public static function button($name, $value = null)
-    {
-        return new Button\Button($name, $value);
-    }
-
-    /**
-     * create RangeInput object
-     * @param string $name
-     * @param string $value
-     * @return \WinkForm\Input\RangeInput
-     */
-    public static function range($name, $value = null)
-    {
-        return new Input\RangeInput($name, $value);
-    }
-
-    /**
-     * create reset button
-     * @param string $name
-     * @param string $value
-     * @return \WinkForm\Button\ResetButton
-     */
-    public static function reset($name, $value = null)
-    {
-        return new Button\ResetButton($name, $value);
-    }
-
-    /**
-     * create SearchInput object
-     * @param string $name
-     * @param string $value
-     * @return \WinkForm\Input\SearchInput
-     */
-    public static function search($name, $value = null)
-    {
-        return new Input\SearchInput($name, $value);
-    }
-
-    /**
-     * create SubmitButton object
-     * @param string $name
-     * @param string $value
-     * @return \WinkForm\Button\SubmitButton
-     */
-    public static function submit($name, $value = null)
-    {
-        return new Button\SubmitButton($name, $value);
-    }
-
-    /**
-     * create TelInput object
-     * @param string $name
-     * @param string $value
-     * @return \WinkForm\Input\TelInput
-     */
-    public static function tel($name, $value = null)
-    {
-        return new Input\TelInput($name, $value);
-    }
-
-    /**
-     * create TextInput object
-     * @param string $name
-     * @param string $value
-     * @return \WinkForm\Input\TextInput
-     */
-    public static function text($name, $value = null)
-    {
-        return new Input\TextInput($name, $value);
-    }
-
-    /**
-     * create TextAreaInput object
-     * @param string $name
-     * @param string $value
-     * @return \WinkForm\Input\TextAreaInput
-     */
-    public static function textarea($name, $value = null)
-    {
-        return new Input\TextAreaInput($name, $value);
-    }
-
-    /**
-     * create UrlInput object
-     * @param string $name
-     * @param string $value
-     * @return \WinkForm\Input\UrlInput
-     */
-    public static function url($name, $value = null)
-    {
-        return new Input\UrlInput($name, $value);
-    }
-
-    /**
-     * create WeekInput object
-     * @param string $name
-     * @param iyyy-iw $week
-     * @return \WinkForm\Input\WeekInput
-     */
-    public static function week($name, $week = null)
-    {
-        return new Input\WeekInput($name, $week);
-    }
-
-    /**
-     * create WeekRange object
-     * @param string $name
-     * @param iyyy-iw $from
-     * @param iyyy-iw $to
-     * @return \WinkForm\Input\WeekRangeInput
-     */
-    public static function weekRange($name, $from = null, $to = null)
-    {
-        return new Input\WeekRangeInput($name, $from, $to);
-    }
-
-
-
-
-
 
 
     protected $method = 'post',
@@ -549,6 +235,40 @@ abstract class Form
         }
 
         return $this->enctype;
+    }
+    
+    /**
+     * Handle dynamic, static calls to the object abusing the Facade pattern
+     * This way we can create the input elements statically
+     *
+     * @param  string  $method
+     * @param  array   $args
+     * @return mixed
+     */
+    public static function __callStatic($method, $args)
+    {
+        $creator = InputCreator::getInstance();
+    
+        switch (count($args))
+        {
+            case 0:
+                return $creator->$method();
+    
+            case 1:
+                return $creator->$method($args[0]);
+    
+            case 2:
+                return $creator->$method($args[0], $args[1]);
+    
+            case 3:
+                return $creator->$method($args[0], $args[1], $args[2]);
+    
+            case 4:
+                return $creator->$method($args[0], $args[1], $args[2], $args[3]);
+    
+            default:
+                return call_user_func_array(array($creator, $method), $args);
+        }
     }
 
 }

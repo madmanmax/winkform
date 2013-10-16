@@ -59,5 +59,14 @@ class FormTest extends \Codeception\TestCase\Test
 
         $this->assertEquals(Form::ENCTYPE_FILE, $form->getEnctype());
     }
+    
+    /**
+     * test using __callStatic to pretend Form creates the inputs
+     */
+    public function testInputCreator()
+    {
+        $text = Form::text('foo');
+        $this->assertInstanceOf('\WinkForm\Input\TextInput', $text);
+    }
 
 }
